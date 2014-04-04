@@ -21,7 +21,8 @@
 include_recipe "ark"
 
 version = node['tomcat']['version'].to_s
-tomcat_version = "tomcat#{node['tomcat']['version'].to_s}"
+#tomcat_version = "tomcat#{node['tomcat']['version'].to_s}"
+tomcat_version = node['tomcat']['version_name']
 distro = "debian"
 
 # the sysv init script requires an additional package
@@ -31,15 +32,15 @@ end
 
 user node['tomcat']['user']
 
-directory "/usr/local/tomcat" do
-  owner node['tomcat']['user']
-end
+# directory node['tomcat']['base'] do
+  # owner node['tomcat']['user']
+# end
 
 ark tomcat_version do
   url node['tomcat'][version]['url']
   checksum node['tomcat'][version]['checksum']
   version node['tomcat']['version']
-  path  "/usr/local/tomcat"
+  path  node['tomcat']['base']
   home_dir node['tomcat']['home']
   owner node['tomcat']['user']
 end

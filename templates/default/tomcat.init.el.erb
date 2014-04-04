@@ -138,7 +138,7 @@ function start() {
   
   $SU "$TOMCAT_USER" -c "touch $CATALINA_OUT"
   touch "$CATALINA_PID"
-  chown "$TOMCAT_USER":"$TOMCAT_USER" "$CATALINA_PID"
+  chown "$TOMCAT_USER" "$CATALINA_PID"
   run_java_cmd=$(cat <<EOF
 "$_RUNJAVA" "$LOGGING_CONFIG" $JAVA_OPTS \
 -Djava.endorsed.dirs="$JAVA_ENDORSED_DIRS" -classpath "$CLASSPATH" \

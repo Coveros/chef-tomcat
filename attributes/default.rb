@@ -20,10 +20,13 @@
 
 default["tomcat"]["version"] = "7"
 version = node["tomcat"]["version"]
+# version_name defines /usr/local/tomcat7
+default['tomcat']['version_name'] = "tomcat#{version}"
+
 default["tomcat"]["prefix_dir"] = "/usr/local"
 prefix_dir = node["tomcat"]["prefix_dir"]
 default["tomcat"]["home"] = "#{prefix_dir}/tomcat/default"
-default["tomcat"]["base"] = "#{prefix_dir}/tomcat/default"
+default["tomcat"]["base"] = "#{prefix_dir}/tomcat"
 tomcat_base = node["tomcat"]["base"]
 default["tomcat"]["context_dir"] = "#{tomcat_base}/conf/Catalina/localhost"
 default["tomcat"]["log_dir"] = "#{tomcat_base}/logs"
