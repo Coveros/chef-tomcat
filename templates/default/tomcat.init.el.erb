@@ -230,10 +230,10 @@ function status()
    elif [ "$RETVAL" -eq "1" ]; then
       echo "PID file exists, but process is not running"
    else 
-      pid="$(/usr/bin/pgrep -d , -u ${TOMCAT_USER} -G ${TOMCAT_GROUP} java)"
+      pid="$(/usr/bin/pgrep -d , -u ${TOMCAT_USER} -G ${TOMCAT_GROUP} -f 'java.*tomcat')"
       if [ -z "$pid" ]; then
 	  echo "${NAME} is stopped"
-	  RETVAL="0"
+	  RETVAL="3"
       else
 	  echo "${NAME} (pid $pid) is running..."
 	  RETVAL="0"
